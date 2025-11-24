@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0ea5e9;
+  /* Sky 500 */
+  --color-primary-dark: #0284c7;
+  /* Sky 600 */
+  --color-secondary: #14b8a6;
+  /* Teal 500 */
+  --color-accent: #6366f1;
+  /* Indigo 500 */
+  --color-background: #f8fafc;
+  /* Slate 50 */
+  --color-surface: #ffffff;
+  --color-text-main: #0f172a;
+  /* Slate 900 */
+  --color-text-muted: #64748b;
+  /* Slate 500 */
+  --color-border: #e2e8f0;
+  /* Slate 200 */
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Custom Utilities that might not be covered by Tailwind or overrides */
+@layer utilities {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark hover:-translate-y-px hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border border-border bg-transparent text-text-main hover:bg-surface hover:border-primary hover:text-primary;
+  }
+
+  .section-title {
+    @apply text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary-dark to-secondary bg-clip-text text-transparent;
+  }
+
+  .section-subtitle {
+    @apply text-center text-text-muted max-w-xl mx-auto mb-12 text-lg;
+  }
+
+  .card {
+    @apply bg-surface rounded-xl p-6 shadow-sm border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary;
+  }
+}
+
+body {
+  @apply font-sans bg-background text-text-main antialiased;
+}
