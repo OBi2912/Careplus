@@ -6,7 +6,7 @@ const Footer = () => {
     const { t, setLanguage, language } = useLanguage();
 
     return (
-        <footer className="bg-slate-900 text-white pt-16 pb-8">
+        <footer id="contact" className="bg-slate-900 text-white pt-16 pb-8">
             <div className="container">
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     <div>

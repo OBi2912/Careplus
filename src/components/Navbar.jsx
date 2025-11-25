@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Heart, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,6 +10,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useLanguage();
     const { openModal } = useModal();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +20,26 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleNavClick = (sectionId) => {
+        // If not on home page, navigate to home first
+        if (location.pathname !== '/') {
+            navigate('/');
+            // Wait for navigation to complete, then scroll
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        } else {
+            // Already on home page, just scroll
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
     return (
         <nav
@@ -35,22 +57,23 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8">
-                    <a href="#services" className="text-text-main hover:text-primary font-medium transition-colors">{t.navbar.services}</a>
-                    <a href="#plans" className="text-text-main hover:text-primary font-medium transition-colors">{t.navbar.plans}</a>
-                    <a href="#doctors" className="text-text-main hover:text-primary font-medium transition-colors">{t.navbar.doctors}</a>
-                    <a href="#contact" className="text-text-main hover:text-primary font-medium transition-colors">{t.navbar.contact}</a>
-                    <button onClick={() => openModal('register')} className="btn btn-outline">
+                <div className="hidden lg:flex items-center gap-4">
+                    <button onClick={() => handleNavClick('services')} className="text-text-main hover:text-primary font-medium transition-colors text-sm">{t.navbar.services}</button>
+                    <button onClick={() => handleNavClick('plans')} className="text-text-main hover:text-primary font-medium transition-colors text-sm">{t.navbar.plans}</button>
+                    <button onClick={() => handleNavClick('doctors')} className="text-text-main hover:text-primary font-medium transition-colors text-sm">{t.navbar.doctors}</button>
+                    <button onClick={() => handleNavClick('contact')} className="text-text-main hover:text-primary font-medium transition-colors text-sm">{t.navbar.contact}</button>
+                    <Link to="/pacientes" className="text-text-main hover:text-primary font-medium transition-colors text-sm">{t.navbar.patients}</Link>
+                    <button onClick={() => openModal('register')} className="btn btn-outline text-sm px-3 py-2">
                         {t.navbar.register}
                     </button>
-                    <button onClick={openModal} className="btn btn-primary">
+                    <button onClick={openModal} className="btn btn-primary text-sm px-3 py-2">
                         {t.navbar.book}
                     </button>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden text-text-main"
+                    className="lg:hidden text-text-main"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -64,13 +87,14 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-b border-border overflow-hidden"
+                        className="lg:hidden bg-white border-b border-border overflow-hidden"
                     >
                         <div className="container py-4 flex flex-col gap-4">
-                            <a href="#services" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.navbar.services}</a>
-                            <a href="#plans" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.navbar.plans}</a>
-                            <a href="#doctors" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.navbar.doctors}</a>
-                            <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.navbar.contact}</a>
+                            <button onClick={() => { setIsOpen(false); handleNavClick('services'); }} className="text-lg font-medium text-left text-black">{t.navbar.services}</button>
+                            <button onClick={() => { setIsOpen(false); handleNavClick('plans'); }} className="text-lg font-medium text-left text-black">{t.navbar.plans}</button>
+                            <button onClick={() => { setIsOpen(false); handleNavClick('doctors'); }} className="text-lg font-medium text-left text-black">{t.navbar.doctors}</button>
+                            <button onClick={() => { setIsOpen(false); handleNavClick('contact'); }} className="text-lg font-medium text-left text-black">{t.navbar.contact}</button>
+                            <Link to="/pacientes" onClick={() => setIsOpen(false)} className="text-lg font-medium text-black">{t.navbar.patients}</Link>
                             <button onClick={() => { setIsOpen(false); openModal('register'); }} className="btn btn-outline w-full">
                                 {t.navbar.register}
                             </button>

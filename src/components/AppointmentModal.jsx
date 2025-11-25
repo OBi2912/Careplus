@@ -3,22 +3,50 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useModal } from '../context/ModalContext';
+import { useData } from '../context/DataContext';
 
 const AppointmentModal = () => {
     const { t } = useLanguage();
     const { isModalOpen, closeModal, modalType, modalData } = useModal();
+    const { addAppointment } = useData();
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        service: '',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Simulate API call
+
+        // Save appointment to local storage
+        addAppointment(formData);
+
+        // Show success message
+        setIsSubmitted(true);
         setTimeout(() => {
-            setIsSubmitted(true);
-            setTimeout(() => {
-                closeModal();
-                setIsSubmitted(false);
-            }, 2000);
-        }, 1000);
+            closeModal();
+            setIsSubmitted(false);
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                date: '',
+                time: '',
+                service: '',
+                message: ''
+            });
+        }, 2000);
     };
 
     React.useEffect(() => {
@@ -86,6 +114,9 @@ const AppointmentModal = () => {
                                             <label className="block text-sm font-medium text-text-main mb-1">{t.modal.name}</label>
                                             <input
                                                 type="text"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleChange}
                                                 required
                                                 className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                             />
@@ -96,6 +127,9 @@ const AppointmentModal = () => {
                                                 <label className="block text-sm font-medium text-text-main mb-1">{t.modal.email}</label>
                                                 <input
                                                     type="email"
+                                                    name="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
                                                     required
                                                     className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
@@ -104,6 +138,9 @@ const AppointmentModal = () => {
                                                 <label className="block text-sm font-medium text-text-main mb-1">{t.modal.phone}</label>
                                                 <input
                                                     type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
                                                     required
                                                     className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
@@ -115,25 +152,48 @@ const AppointmentModal = () => {
                                                 <label className="block text-sm font-medium text-text-main mb-1">{t.modal.date}</label>
                                                 <input
                                                     type="date"
+                                                    name="date"
+                                                    value={formData.date}
+                                                    onChange={handleChange}
                                                     required
                                                     className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.modal.service}</label>
-                                                <select
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
-                                                >
-                                                    {t.services.items.map((service, index) => (
-                                                        <option key={index} value={service.title}>{service.title}</option>
-                                                    ))}
-                                                </select>
+                                                <label className="block text-sm font-medium text-text-main mb-1">Hora</label>
+                                                <input
+                                                    type="time"
+                                                    name="time"
+                                                    value={formData.time}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                />
                                             </div>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium text-text-main mb-1">{t.modal.service}</label>
+                                            <select
+                                                name="service"
+                                                value={formData.service}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
+                                            >
+                                                <option value="">Seleccionar servicio...</option>
+                                                {t.services.items.map((service, index) => (
+                                                    <option key={index} value={service.title}>{service.title}</option>
+                                                ))}
+                                            </select>
                                         </div>
 
                                         <div>
                                             <label className="block text-sm font-medium text-text-main mb-1">{t.modal.message}</label>
                                             <textarea
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
                                                 rows="3"
                                                 className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                                             ></textarea>

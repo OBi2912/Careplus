@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -9,6 +10,8 @@ import ServiceModal from './components/ServiceModal';
 import PlanModal from './components/PlanModal';
 import RegisterModal from './components/RegisterModal';
 import About from './components/About';
+import Doctors from './components/Doctors';
+import PatientsPage from './pages/PatientsPage';
 
 function App() {
   return (
@@ -19,10 +22,18 @@ function App() {
       <PlanModal />
       <RegisterModal />
       <main className="flex-grow">
-        <Hero />
-        <About />
-        <Services />
-        <Plans />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <Services />
+              <Doctors />
+              <Plans />
+            </>
+          } />
+          <Route path="/pacientes" element={<PatientsPage />} />
+        </Routes>
       </main>
       <Footer />
     </div>

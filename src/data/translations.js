@@ -6,7 +6,8 @@ export const translations = {
             doctors: "Doctores",
             contact: "Contacto",
             book: "Agendar Cita",
-            register: "Crear Cuenta"
+            register: "Crear Cuenta",
+            patients: "Pacientes"
         },
         hero: {
             badge: "#1 en Servicios de Salud",
@@ -104,6 +105,42 @@ export const translations = {
                 }
             ]
         },
+        doctors: {
+            title: "Nuestros Especialistas",
+            subtitle: "Médicos certificados y altamente calificados listos para cuidar de tu salud.",
+            items: [
+                {
+                    name: "Dr. Carlos Mendoza",
+                    specialty: "Cardiología",
+                    experience: "15 años de experiencia"
+                },
+                {
+                    name: "Dra. Ana García",
+                    specialty: "Pediatría",
+                    experience: "12 años de experiencia"
+                },
+                {
+                    name: "Dr. Roberto Silva",
+                    specialty: "Traumatología",
+                    experience: "18 años de experiencia"
+                },
+                {
+                    name: "Dra. María López",
+                    specialty: "Ginecología",
+                    experience: "10 años de experiencia"
+                },
+                {
+                    name: "Dr. José Ramírez",
+                    specialty: "Neurología",
+                    experience: "20 años de experiencia"
+                },
+                {
+                    name: "Dra. Laura Martínez",
+                    specialty: "Dermatología",
+                    experience: "8 años de experiencia"
+                }
+            ]
+        },
         footer: {
             description: "Transformando la experiencia de salud con tecnología y humanidad. Tu bienestar es nuestra misión diaria.",
             company: "Compañía",
@@ -173,7 +210,8 @@ export const translations = {
             doctors: "Doctors",
             contact: "Contact",
             book: "Book Appointment",
-            register: "Sign Up"
+            register: "Sign Up",
+            patients: "Patients"
         },
         hero: {
             badge: "#1 in Health Services",
@@ -268,6 +306,42 @@ export const translations = {
                 {
                     name: "Family",
                     features: ["Up to 4 members", "Full coverage", "Maternity", "Full dental", "Optometry"]
+                }
+            ]
+        },
+        doctors: {
+            title: "Our Specialists",
+            subtitle: "Certified and highly qualified doctors ready to take care of your health.",
+            items: [
+                {
+                    name: "Dr. Carlos Mendoza",
+                    specialty: "Cardiology",
+                    experience: "15 years of experience"
+                },
+                {
+                    name: "Dr. Ana García",
+                    specialty: "Pediatrics",
+                    experience: "12 years of experience"
+                },
+                {
+                    name: "Dr. Roberto Silva",
+                    specialty: "Traumatology",
+                    experience: "18 years of experience"
+                },
+                {
+                    name: "Dr. María López",
+                    specialty: "Gynecology",
+                    experience: "10 years of experience"
+                },
+                {
+                    name: "Dr. José Ramírez",
+                    specialty: "Neurology",
+                    experience: "20 years of experience"
+                },
+                {
+                    name: "Dr. Laura Martínez",
+                    specialty: "Dermatology",
+                    experience: "8 years of experience"
                 }
             ]
         },
