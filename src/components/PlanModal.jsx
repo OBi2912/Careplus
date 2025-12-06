@@ -49,7 +49,7 @@ const PlanModal = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeModal}
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[59]"
                     />
 
                     {/* Modal */}
@@ -57,9 +57,9 @@ const PlanModal = () => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+                        className="fixed inset-0 z-[60] flex items-center justify-center p-3 md:p-4 pointer-events-none"
                     >
-                        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden pointer-events-auto max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white rounded-2xl shadow-2xl w-[95%] md:w-full max-w-2xl overflow-hidden pointer-events-auto max-h-[80vh] overflow-y-auto">
                             {isSubmitted ? (
                                 <div className="p-12 flex flex-col items-center text-center">
                                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
@@ -69,9 +69,9 @@ const PlanModal = () => {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="p-6 border-b border-border flex items-center justify-between bg-gradient-to-r from-primary to-secondary text-white">
+                                    <div className="p-3 md:p-6 border-b border-border flex items-center justify-between bg-gradient-to-r from-primary to-secondary text-white">
                                         <div>
-                                            <h3 className="text-xl font-bold">{t.planModal.title}</h3>
+                                            <h3 className="text-lg md:text-xl font-bold">{t.planModal.title}</h3>
                                             <p className="text-sm text-white/90 mt-1">{t.planModal.subtitle}</p>
                                         </div>
                                         <button
@@ -82,78 +82,78 @@ const PlanModal = () => {
                                         </button>
                                     </div>
 
-                                    <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                                    <form onSubmit={handleSubmit} className="p-3 md:p-6 space-y-2 md:space-y-4">
                                         {/* Plan Selection - Read Only */}
                                         <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-4">
-                                            <label className="block text-sm font-medium text-text-main mb-2">{t.planModal.plan}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-2">{t.planModal.plan}</label>
                                             <div className="text-2xl font-bold text-primary">{modalData?.planName || 'Plan'}</div>
                                         </div>
 
                                         {/* Name */}
                                         <div>
-                                            <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.name}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.name}</label>
                                             <input
                                                 type="text"
                                                 required
-                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                             />
                                         </div>
 
                                         {/* Email and Phone */}
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.email}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.email}</label>
                                                 <input
                                                     type="email"
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.phone}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.phone}</label>
                                                 <input
                                                     type="tel"
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Address */}
                                         <div>
-                                            <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.address}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.address}</label>
                                             <input
                                                 type="text"
                                                 required
-                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                             />
                                         </div>
 
                                         {/* City and Zip Code */}
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.city}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.city}</label>
                                                 <input
                                                     type="text"
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.zipCode}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.zipCode}</label>
                                                 <input
                                                     type="text"
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Members and Start Date */}
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.members}</label>
-                                                <select className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white">
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.members}</label>
+                                                <select className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -162,27 +162,27 @@ const PlanModal = () => {
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.planModal.startDate}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.planModal.startDate}</label>
                                                 <input
                                                     type="date"
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Buttons */}
-                                        <div className="pt-4 flex gap-3">
+                                        <div className="pt-2 md:pt-4 flex gap-3">
                                             <button
                                                 type="button"
                                                 onClick={closeModal}
-                                                className="flex-1 btn btn-outline"
+                                                className="flex-1 btn btn-outline py-2 md:py-3"
                                             >
                                                 {t.planModal.cancel}
                                             </button>
                                             <button
                                                 type="submit"
-                                                className="flex-1 btn btn-primary"
+                                                className="flex-1 btn btn-primary py-2 md:py-3"
                                             >
                                                 {t.planModal.submit}
                                             </button>

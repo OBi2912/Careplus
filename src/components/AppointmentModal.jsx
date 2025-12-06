@@ -76,7 +76,7 @@ const AppointmentModal = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeModal}
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[59]"
                     />
 
                     {/* Modal */}
@@ -84,9 +84,9 @@ const AppointmentModal = () => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+                        className="fixed inset-0 z-[60] flex items-center justify-center p-3 md:p-4 pointer-events-none"
                     >
-                        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden pointer-events-auto">
+                        <div className="bg-white rounded-2xl shadow-2xl w-[95%] md:w-full max-w-lg overflow-hidden pointer-events-auto max-h-[80vh] overflow-y-auto">
                             {isSubmitted ? (
                                 <div className="p-12 flex flex-col items-center text-center">
                                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
@@ -96,9 +96,9 @@ const AppointmentModal = () => {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="p-6 border-b border-border flex items-center justify-between bg-slate-50">
+                                    <div className="p-3 md:p-6 border-b border-border flex items-center justify-between bg-slate-50">
                                         <div>
-                                            <h3 className="text-xl font-bold text-text-main">{t.modal.title}</h3>
+                                            <h3 className="text-lg md:text-xl font-bold text-text-main">{t.modal.title}</h3>
                                             <p className="text-sm text-text-muted mt-1">{t.modal.subtitle}</p>
                                         </div>
                                         <button
@@ -109,77 +109,77 @@ const AppointmentModal = () => {
                                         </button>
                                     </div>
 
-                                    <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                                    <form onSubmit={handleSubmit} className="p-3 md:p-6 space-y-2 md:space-y-4">
                                         <div>
-                                            <label className="block text-sm font-medium text-text-main mb-1">{t.modal.name}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.name}</label>
                                             <input
                                                 type="text"
                                                 name="name"
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                             />
                                         </div>
 
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.modal.email}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.email}</label>
                                                 <input
                                                     type="email"
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.modal.phone}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.phone}</label>
                                                 <input
                                                     type="tel"
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">{t.modal.date}</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.date}</label>
                                                 <input
                                                     type="date"
                                                     name="date"
                                                     value={formData.date}
                                                     onChange={handleChange}
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-text-main mb-1">Hora</label>
+                                                <label className="block text-xs md:text-sm font-medium text-text-main mb-1">Hora</label>
                                                 <input
                                                     type="time"
                                                     name="time"
                                                     value={formData.time}
                                                     onChange={handleChange}
                                                     required
-                                                    className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                                    className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-medium text-text-main mb-1">{t.modal.service}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.service}</label>
                                             <select
                                                 name="service"
                                                 value={formData.service}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
+                                                className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
                                             >
                                                 <option value="">Seleccionar servicio...</option>
                                                 {t.services.items.map((service, index) => (
@@ -189,27 +189,27 @@ const AppointmentModal = () => {
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-medium text-text-main mb-1">{t.modal.message}</label>
+                                            <label className="block text-xs md:text-sm font-medium text-text-main mb-1">{t.modal.message}</label>
                                             <textarea
                                                 name="message"
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 rows="3"
-                                                className="w-full px-4 py-2 rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                                                className="w-full px-3 py-1.5 md:px-4 md:py-2 text-sm rounded-lg border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                                             ></textarea>
                                         </div>
 
-                                        <div className="pt-4 flex gap-3">
+                                        <div className="pt-2 md:pt-4 flex gap-3">
                                             <button
                                                 type="button"
                                                 onClick={closeModal}
-                                                className="flex-1 btn btn-outline"
+                                                className="flex-1 btn btn-outline py-2 md:py-3"
                                             >
                                                 {t.modal.cancel}
                                             </button>
                                             <button
                                                 type="submit"
-                                                className="flex-1 btn btn-primary"
+                                                className="flex-1 btn btn-primary py-2 md:py-3"
                                             >
                                                 {t.modal.submit}
                                             </button>
