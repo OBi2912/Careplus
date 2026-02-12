@@ -22,28 +22,34 @@ const Navbar = () => {
     }, []);
 
     const handleNavClick = (sectionId) => {
-        // If not on home page, navigate to home first
-        if (location.pathname !== '/') {
-            navigate('/');
-            // Wait for navigation to complete, then scroll
-            setTimeout(() => {
+        // Close menu first
+        setIsOpen(false);
+        
+        // Small delay to allow menu to close before scrolling
+        setTimeout(() => {
+            // If not on home page, navigate to home first
+            if (location.pathname !== '/') {
+                navigate('/');
+                // Wait for navigation to complete, then scroll
+                setTimeout(() => {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 500);
+            } else {
+                // Already on home page, just scroll
                 const element = document.getElementById(sectionId);
                 if (element) {
                     element.scrollIntoView({ behavior: 'smooth' });
                 }
-            }, 100);
-        } else {
-            // Already on home page, just scroll
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
             }
-        }
+        }, 100);
     };
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass shadow-md py-3' : 'bg-transparent py-5'
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isOpen ? 'glass shadow-md py-3' : 'bg-transparent py-5'
                 }`}
         >
             <div className="container flex items-center justify-between">
@@ -73,8 +79,9 @@ const Navbar = () => {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="lg:hidden text-text-main"
+                    className="lg:hidden text-text-main p-2"
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
@@ -87,20 +94,24 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="lg:hidden bg-white border-b border-border overflow-hidden"
+                        transition={{ duration: 0.2 }}
+                        className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-border shadow-xl z-40 overflow-hidden"
                     >
-                        <div className="container py-4 flex flex-col gap-4">
-                            <button onClick={() => { setIsOpen(false); handleNavClick('services'); }} className="text-lg font-medium text-left text-black">{t.navbar.services}</button>
-                            <button onClick={() => { setIsOpen(false); handleNavClick('plans'); }} className="text-lg font-medium text-left text-black">{t.navbar.plans}</button>
-                            <button onClick={() => { setIsOpen(false); handleNavClick('doctors'); }} className="text-lg font-medium text-left text-black">{t.navbar.doctors}</button>
-                            <button onClick={() => { setIsOpen(false); handleNavClick('contact'); }} className="text-lg font-medium text-left text-black">{t.navbar.contact}</button>
-                            <Link to="/pacientes" onClick={() => setIsOpen(false)} className="text-lg font-medium text-black">{t.navbar.patients}</Link>
-                            <button onClick={() => { setIsOpen(false); openModal('register'); }} className="btn btn-outline w-full">
-                                {t.navbar.register}
-                            </button>
-                            <button onClick={() => { setIsOpen(false); openModal('appointment'); }} className="btn btn-primary w-full">
-                                {t.navbar.book}
-                            </button>
+                        <div className="container py-6 flex flex-col gap-2">
+                            <button onClick={() => handleNavClick('services')} className="text-lg font-medium text-left text-black w-full px-4 py-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100">{t.navbar.services}</button>
+                            <button onClick={() => handleNavClick('plans')} className="text-lg font-medium text-left text-black w-full px-4 py-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100">{t.navbar.plans}</button>
+                            <button onClick={() => handleNavClick('doctors')} className="text-lg font-medium text-left text-black w-full px-4 py-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100">{t.navbar.doctors}</button>
+                            <button onClick={() => handleNavClick('contact')} className="text-lg font-medium text-left text-black w-full px-4 py-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100">{t.navbar.contact}</button>
+                            <Link to="/pacientes" onClick={() => setIsOpen(false)} className="text-lg font-medium text-black block w-full px-4 py-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100">{t.navbar.patients}</Link>
+
+                            <div className="grid grid-cols-2 gap-4 mt-4 px-4 pb-2">
+                                <button onClick={() => { setIsOpen(false); openModal('register'); }} className="btn btn-outline w-full justify-center">
+                                    {t.navbar.register}
+                                </button>
+                                <button onClick={() => { setIsOpen(false); openModal('appointment'); }} className="btn btn-primary w-full justify-center">
+                                    {t.navbar.book}
+                                </button>
+                            </div>
                         </div>
                     </motion.div>
                 )}
