@@ -66,7 +66,7 @@ const Navbar = () => {
                     <button onClick={() => openModal('register')} className="btn btn-outline text-sm px-3 py-2">
                         {t.navbar.register}
                     </button>
-                    <button onClick={openModal} className="btn btn-primary text-sm px-3 py-2">
+                    <button onClick={() => openModal('appointment')} className="btn btn-primary text-sm px-3 py-2">
                         {t.navbar.book}
                     </button>
                 </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
                             <button onClick={() => { setIsOpen(false); openModal('register'); }} className="btn btn-outline w-full">
                                 {t.navbar.register}
                             </button>
-                            <button onClick={() => { setIsOpen(false); openModal(); }} className="btn btn-primary w-full">
+                            <button onClick={() => { setIsOpen(false); openModal('appointment'); }} className="btn btn-primary w-full">
                                 {t.navbar.book}
                             </button>
                         </div>

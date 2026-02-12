@@ -37,7 +37,7 @@ const Hero = () => {
                     </p>
 
                     <div className="flex flex-wrap gap-4">
-                        <button onClick={openModal} className="btn btn-primary text-lg px-8">
+                        <button onClick={() => openModal('appointment')} className="btn btn-primary text-lg px-8">
                             {t.hero.start}
                         </button>
                         <a href="#about" className="btn btn-outline text-lg px-8 group">

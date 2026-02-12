@@ -56,15 +56,15 @@ const AppointmentModal = () => {
             }
         };
 
-        if (isModalOpen && (modalType === 'appointment' || modalType === 'service')) {
+        if (isModalOpen && modalType === 'appointment') {
             window.addEventListener('keydown', handleEsc);
         }
 
         return () => window.removeEventListener('keydown', handleEsc);
     }, [isModalOpen, modalType, closeModal]);
 
-    // Only render if it's an appointment or service modal (not plan)
-    if (modalType === 'plan' || (!isModalOpen)) return null;
+    // Only render if it's an appointment modal
+    if (modalType !== 'appointment') return null;
 
     return (
         <AnimatePresence>

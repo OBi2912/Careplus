@@ -11,6 +11,20 @@ const ServiceModal = () => {
     // Only render if it's a service modal
     if (modalType !== 'service' || !modalData) return null;
 
+    React.useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+
+        if (isModalOpen && modalType === 'service') {
+            window.addEventListener('keydown', handleEsc);
+        }
+
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, [isModalOpen, modalType, closeModal]);
+
     const handleBookNow = () => {
         // Switch to appointment modal
         closeModal();
